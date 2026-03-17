@@ -19,11 +19,33 @@ threat analysis and false-positive reduction:
 
 All four memory types update atomically after each `/analyze` request.
 
+## Scoring Pipeline
+
+```
+RawLog ──► AnomalyDetector ──► SequenceDetector ──► BaselineDeviation
+               │                                            │
+               └────────────────────────────────────────────┘
+                                      │
+                            WorkingMemoryContext
+                                      │
+                             LLMClient (mock/live)
+                                      │
+                            HybridScoringEngine
+                         w_anomaly=0.25, w_llm=0.45
+                         w_history=0.20, w_severity=0.10
+                                      │
+                            HistoryScorer + FP Discount
+                         effective = history × (1 − fp × 0.80)
+                                      │
+                           DecisionEngine → PolicyResponse
+```
+
 ## Tech Stack
 
 - **Backend:** FastAPI (async) + aiosqlite
-- **LLM:** OpenAI-compatible endpoint (configurable) with mock fallback
+- **LLM:** OpenAI-compatible endpoint (configurable) with keyword-based mock
 - **Storage:** SQLite (dev); swap `DATABASE_URL` for PostgreSQL in production
+- **Tests:** pytest (301 tests)
 
 ## Quick Start
 
