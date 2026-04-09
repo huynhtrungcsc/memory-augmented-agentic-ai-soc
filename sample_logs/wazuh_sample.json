@@ -1,0 +1,53 @@
+[
+  {
+    "source": "wazuh",
+    "timestamp": "2026-04-12T10:30:00Z",
+    "src_ip": null,
+    "dst_ip": null,
+    "src_port": null,
+    "dst_port": null,
+    "protocol": null,
+    "event_type": "Privilege Escalation via sudo",
+    "severity": "high",
+    "message": "User 'dbadmin' executed sudo su -root without a matching sudoers rule on host db-prod-01",
+    "username": "dbadmin",
+    "hostname": "db-prod-01",
+    "raw_payload": {
+      "rule": {
+        "id": 5402,
+        "level": 9,
+        "description": "Successful sudo to ROOT executed",
+        "groups": ["sudo", "syslog", "authentication_success"]
+      },
+      "agent": { "id": "007", "name": "db-prod-01" },
+      "syscheck": {}
+    }
+  },
+  {
+    "source": "wazuh",
+    "timestamp": "2026-04-12T10:35:00Z",
+    "src_ip": null,
+    "dst_ip": null,
+    "src_port": null,
+    "dst_port": null,
+    "protocol": null,
+    "event_type": "Credential Dump — /etc/shadow accessed",
+    "severity": "critical",
+    "message": "Unusual read of /etc/shadow by process 'python3' under user 'dbadmin' — possible credential dumping",
+    "username": "dbadmin",
+    "hostname": "db-prod-01",
+    "raw_payload": {
+      "rule": {
+        "id": 550,
+        "level": 12,
+        "description": "Integrity checksum changed — sensitive file",
+        "groups": ["ossec", "syscheck", "syscheck_entry_modified"]
+      },
+      "syscheck": {
+        "path": "/etc/shadow",
+        "event": "modified",
+        "changed_attributes": ["md5", "sha1"]
+      }
+    }
+  }
+]

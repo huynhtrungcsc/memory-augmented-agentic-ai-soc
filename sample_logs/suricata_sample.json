@@ -1,0 +1,51 @@
+[
+  {
+    "source": "suricata",
+    "timestamp": "2026-04-12T08:15:00Z",
+    "src_ip": "192.168.1.105",
+    "dst_ip": "10.0.0.1",
+    "src_port": 54231,
+    "dst_port": 22,
+    "protocol": "TCP",
+    "event_type": "ET SCAN SSH BruteForce Attempt",
+    "severity": "high",
+    "message": "SSH brute-force attempt detected: 47 login failures in 60 seconds from 192.168.1.105",
+    "username": null,
+    "hostname": "srv-gateway",
+    "raw_payload": {
+      "flow_id": 1927364501,
+      "in_iface": "eth0",
+      "alert": {
+        "action": "alert",
+        "gid": 1,
+        "signature_id": 2001219,
+        "rev": 20,
+        "signature": "ET SCAN Potential SSH Scan",
+        "category": "Attempted Information Leak",
+        "severity": 2
+      }
+    }
+  },
+  {
+    "source": "suricata",
+    "timestamp": "2026-04-12T08:20:00Z",
+    "src_ip": "192.168.1.105",
+    "dst_ip": "10.0.0.1",
+    "src_port": 54290,
+    "dst_port": 22,
+    "protocol": "TCP",
+    "event_type": "ET EXPLOIT OpenSSH CVE-2023-38408",
+    "severity": "critical",
+    "message": "Possible exploitation attempt targeting OpenSSH agent forwarding vulnerability",
+    "username": null,
+    "hostname": "srv-gateway",
+    "raw_payload": {
+      "flow_id": 1927364888,
+      "alert": {
+        "signature_id": 2046290,
+        "signature": "ET EXPLOIT OpenSSH RCE Attempt",
+        "category": "Attempted Administrator Privilege Gain"
+      }
+    }
+  }
+]

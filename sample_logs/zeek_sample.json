@@ -1,0 +1,48 @@
+[
+  {
+    "source": "zeek",
+    "timestamp": "2026-04-12T09:05:00Z",
+    "src_ip": "10.0.2.45",
+    "dst_ip": "10.0.0.200",
+    "src_port": 49152,
+    "dst_port": 445,
+    "protocol": "TCP",
+    "event_type": "SMB Lateral Movement",
+    "severity": "high",
+    "message": "Unusual SMB connection from workstation 10.0.2.45 to file server 10.0.0.200 — ADMIN$ share access",
+    "username": "jsmith",
+    "hostname": "ws-finance-07",
+    "raw_payload": {
+      "uid": "CbEy4M3TYKg4dOkfUe",
+      "conn_state": "SF",
+      "missed_bytes": 0,
+      "smb": {
+        "share": "ADMIN$",
+        "action": "SMB::FILE_OPEN",
+        "path": "\\\\10.0.0.200\\ADMIN$"
+      }
+    }
+  },
+  {
+    "source": "zeek",
+    "timestamp": "2026-04-12T09:10:00Z",
+    "src_ip": "10.0.2.45",
+    "dst_ip": "185.220.101.47",
+    "src_port": 51200,
+    "dst_port": 443,
+    "protocol": "TCP",
+    "event_type": "C2 Beacon Suspected",
+    "severity": "critical",
+    "message": "Periodic beacon to known Tor exit node 185.220.101.47 every 60s — possible C2 channel",
+    "username": "jsmith",
+    "hostname": "ws-finance-07",
+    "raw_payload": {
+      "uid": "CqRx9Z1LMNp7vOaXpb",
+      "conn_state": "S1",
+      "duration": 0.003,
+      "orig_bytes": 256,
+      "resp_bytes": 512,
+      "service": "ssl"
+    }
+  }
+]
