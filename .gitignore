@@ -57,3 +57,10 @@ dmypy.json
 
 # Runtime state
 soc_memory.db
+
+# Runtime and environment artefacts
+*.db-shm
+*.db-wal
+.cache/
+.agents/
+.pythonlibs/
